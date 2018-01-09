@@ -1,0 +1,84 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+  <!-- Page Heading/Breadcrumbs -->
+  <h1 class="mt-4 mb-3">Reservas
+    <small> hoy </hoy>
+  </h1>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Num comensales</th>
+        <th scope="col">Aceptada</th>
+        <th scope="col">Observaciones</th>
+        <th scope="col">Borrar</th>
+        <th scope="col">Confirmar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reserva in reservas %}
+      <tr>
+        <th scope="row">{{reserva.id}}</th>
+        <td>{{reserva.cliente.nombre}} {{reserva.cliente.apellidos}}</td>
+        <td>{{reserva.cliente.telefono}}</td>
+        <td>{{reserva.fecha|date('Y-m-d h:m')}}</td>
+        <td>{{reserva.numPersonas}}</td>
+        <td>{{reserva.aceptada}}</td>
+        <td>{{reserva.observaciones}}</td>
+        <td><a data-toggle="modal" data-target="#borrarModal" data-whatever="{{reserva.id}}"><center><i class="fa fa-times" aria-hidden="true"></i></center></a></td>
+        <td><a data-toggle="modal" data-target="#aceptarModal" data-whatever="{{reserva.id}}"><center><i class="fa fa-check" aria-hidden="true"></i></center></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<!-- Modal Borrado Copiado bootstrap-->
+<div class="modal fade" id="borrarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Borrar reserva</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Está seguro que quiere borrar la reserva?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <a id="linkBorrarReserva" href="" class="btn btn-primary" data-whatever="{{path('gestion_borrarReserva')}}">Borrar</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Aceptado Copiado bootstrap-->
+<div class="modal fade" id="aceptarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Aceptar reserva</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Está seguro que quiere aceptar la reserva?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <a id="linkAceptarReserva" href="" class="btn btn-primary" data-whatever="{{path('gestion_aceptarReserva')}}">Aceptar</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/gestionReservas.js') }}">
+</script>
+{% endblock %}

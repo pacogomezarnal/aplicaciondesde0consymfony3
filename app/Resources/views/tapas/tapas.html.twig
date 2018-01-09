@@ -1,0 +1,41 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+{% block body %}
+</header>
+<!-- Page Content -->
+<div class="container">
+  <h1 class="my-4">Todas nuestras tapas</h1>
+
+  <div class="row">
+    {% for tapa in tapas %}
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+      <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="{{ asset('img/tapas/'~tapa.foto) }}" alt=""></a>
+        <div class="card-body">
+          <h4 class="card-title">
+            <a href="{{path('home_tapa',{'id': tapa.id})}}">{{tapa.nombre}}</a>
+          </h4>
+          <p class="card-text">{{tapa.descripcion}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% if maxPages > 1 %}
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {%if thisPage > 1 %}
+      <li class="page-item"><a class="page-link" href="{{ path('home_tapas', {currentPage: thisPage-1 < 1 ? 1 : thisPage-1}) }}">Anterior</a></li>
+      {% endif %}
+      {# Render each page number #}
+      {% for i in 1..maxPages %}
+      <li class="page-item"><a class="page-link" href="{{ path('home_tapas', {currentPage: i}) }}">{{ i }}</a></li>
+      {% endfor %}
+      {%if thisPage < maxPages %}
+      <li class="page-item"><a class="page-link" href="{{ path('home_tapas', {currentPage: thisPage+1 <= maxPages ? thisPage+1 : thisPage}) }}">Siguiente</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
+</div>
+{% endblock %}

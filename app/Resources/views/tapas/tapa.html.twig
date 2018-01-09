@@ -1,0 +1,60 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+{% block body %}
+</header>
+<!-- Page Content -->
+<div class="container">
+  <h1 class="my-4">Todas nuestras tapas</h1>
+
+  <!-- Portfolio Item Row -->
+  <div class="row">
+
+    <div class="col-md-8">
+      <img class="img-fluid" src="{{ asset('img/tapas/'~tapa.foto) }}" alt="">
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="my-3">{{tapa.nombre}}</h3>
+      <p>{{tapa.descripcion}}</p>
+      <h3 class="my-3">Ingredientes</h3>
+      {{tapa.ingredientes|raw}}
+      {% if is_granted('ROLE_ADMIN') %}
+      <a href="{{path('gestion_nueva_tapa',{'id': tapa.id})}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
+      {% endif %}
+    </div>
+
+  </div>
+  <!-- /.row -->
+  <!-- Related Projects Row -->
+  <h3 class="my-4">Otras tapas</h3>
+
+  <div class="row">
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+        <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+
+  </div>
+  <!-- /.row -->
+</div>
+{% endblock %}

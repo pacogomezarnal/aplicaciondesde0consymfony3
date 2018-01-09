@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Pacos Tapas Bar">
+        <meta name="author" content="Paco Gomez">
+        <title>{% block title %}Bienvenido a mi Bar{% endblock %}</title>
+        <!-- Bootstrap core CSS -->
+        <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('css/modern-business.css') }}" rel="stylesheet">
+
+
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+      <!-- Navigation -->
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="{{path("home")}}">Bar de Paco</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{{path("home_nosotros")}}">Nosotros</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="{{path("home_contactar")}}" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Bares
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                  <a class="dropdown-item" href="{{path("home_contactar",{'sitio': 'vlc'})}}">Valencia</a>
+                  <a class="dropdown-item" href="{{path("home_contactar",{'sitio': 'bcn'})}}">Barcelona</a>
+                  <a class="dropdown-item" href="{{path("home_contactar",{'sitio': 'mdr'})}}">Madrid</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{path("home_tapas")}}">Tapas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{path("gestion_reserva")}}">Reservas</a>
+              </li>
+              {% if is_granted('ROLE_ADMIN') %}
+              <li class="nav-item">
+                <a class="nav-link text-warning" href="{{path("gestion_nueva_tapa")}}">Nueva Tapa</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-warning" href="{{path("gestion_reservas")}}">Gestion reservas</a>
+              </li>
+              {% endif %}
+              {% if app.user %}
+              <li class="nav-item">
+                <a class="nav-link text-warning" href="{{path("gestion_logout")}}">Logout</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+        {% block body %}{% endblock %}
+        <!-- Footer -->
+        <footer class="py-5 bg-dark">
+          <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Cooking Software</p>
+          </div>
+          <!-- /.container -->
+        </footer>
+        <!-- Bootstrap core JavaScript -->
+        <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <!-- Custom Fonts -->
+        <script src="https://use.fontawesome.com/67a564e5bf.js"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

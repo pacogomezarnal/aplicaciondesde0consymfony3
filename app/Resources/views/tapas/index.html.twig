@@ -1,0 +1,64 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+{% block body %}
+<header>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <!-- Slide One - Set the background image for this slide in the line below -->
+      <div class="carousel-item active" style="background-image: url({{ asset('img/slide01.png') }})">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>El Bar de Paco</h3>
+          <p>Un lugar donde tomar buenas tapas</p>
+        </div>
+      </div>
+      <!-- Slide Two - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url({{ asset('img/slide02.png') }})">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>El Bar de Paco</h3>
+          <p>Con comida tradicional y de autor</p>
+        </div>
+      </div>
+      <!-- Slide Three - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url({{ asset('img/slide03.png') }})">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>El Bar de Paco</h3>
+          <p>Carta renovada todas los meses</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</header>
+<!-- Page Content -->
+<div class="container">
+  <h1 class="my-4">Nuestras mejores tapas</h1>
+
+  <div class="row">
+    {% for tapa in tapas %}
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+      <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="{{ asset('img/tapas/'~tapa.foto) }}" alt=""></a>
+        <div class="card-body">
+          <h4 class="card-title">
+            <a href="{{path('home_tapa',{'id': tapa.id})}}">{{tapa.nombre}}</a>
+          </h4>
+          <p class="card-text">{{tapa.descripcion}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

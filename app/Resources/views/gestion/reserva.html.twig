@@ -1,0 +1,37 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+{% block body %}
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 mb-4">
+      <h3>Reserva</h3>
+      {{ form_start(form) }}
+      {{ form_errors(form) }}
+      <div class="control-group form-group">
+          {{ form_label(form.cliente) }}
+          {{ form_errors(form.cliente) }}
+          {{ form_widget(form.cliente) }}
+      </div>
+      <div class="control-group form-group">
+          {{ form_label(form.numPersonas) }}
+          {{ form_errors(form.numPersonas) }}
+          {{ form_widget(form.numPersonas) }}
+      </div>
+      <div class="control-group form-group">
+          {{ form_label(form.fecha) }}
+          {{ form_errors(form.fecha) }}
+          {{ form_widget(form.fecha) }}
+      </div>
+      <div class="control-group form-group">
+          {{ form_label(form.observaciones) }}
+          {{ form_errors(form.observaciones) }}
+          {{ form_widget(form.observaciones) }}
+      </div>
+      {{ form_label(form.Reservar) }}
+      {{ form_widget(form.Reservar) }}
+      {{ form_end(form) }}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+{% block body %}
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 mb-4">
+      <h3>Nuevo Cliente</h3>
+      {{ form_start(form) }}
+      {{ form_errors(form) }}
+      <div class="control-group form-group">
+          {{ form_label(form.nombre) }}
+          {{ form_errors(form.nombre) }}
+          {{ form_widget(form.nombre) }}
+      </div>
+      <div class="control-group form-group">
+          {{ form_label(form.apellidos) }}
+          {{ form_errors(form.apellidos) }}
+          {{ form_widget(form.apellidos) }}
+      </div>
+      <div class="control-group form-group">
+          {{ form_label(form.email) }}
+          {{ form_errors(form.email) }}
+          {{ form_widget(form.email) }}
+      </div>
+      <div class="control-group form-group">
+          {{ form_label(form.telefono) }}
+          {{ form_errors(form.telefono) }}
+          {{ form_widget(form.telefono) }}
+      </div>
+      <div class="control-group form-group">
+          {{ form_label(form.plainPassword) }}
+          {{ form_errors(form.plainPassword) }}
+          {{ form_widget(form.plainPassword) }}
+      </div>
+      <div class="control-group form-group">
+          {{ form_label(form.Registrar) }}
+          {{ form_widget(form.Registrar) }}
+      </div>
+      {{ form_end(form) }}
+    </div>
+  </div>
+</div>
+{% endblock %}

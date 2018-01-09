@@ -1,0 +1,33 @@
+{# app/Resources/views/blog/index.html.twig #}
+{% extends 'base.html.twig' %}
+{% block body %}
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 mb-4">
+      <h3>Login</h3>
+      {% if error %}
+          <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+      {% endif %}
+
+      <form action="{{ path('gestion_login') }}" method="post">
+          <div class="control-group form-group">
+            <div class="controls">
+              <label for="username">Username:</label>
+              <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" />
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label for="password">Password:</label>
+              <input class="form-control" type="password" id="password" name="_password" />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" >login</button>
+      </form>
+      <br>
+      <a href="{{ path('gestion_registro') }}" class="btn btn-success" role="button">Nuevo Registro</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

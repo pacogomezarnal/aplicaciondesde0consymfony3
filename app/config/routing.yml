@@ -1,0 +1,11 @@
+tapas:
+    resource: "@TapasBundle/Controller"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+gestion_logout:
+    path: /gestion/logout

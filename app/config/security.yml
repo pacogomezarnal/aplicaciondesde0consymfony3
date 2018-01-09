@@ -1,0 +1,44 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+    encoders:
+        TapasBundle\Entity\Usuario: bcrypt
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        my_db_provider:
+            entity:
+                class: TapasBundle:Usuario
+                property: username
+        in_memory:
+            memory: ~
+    access_control:
+      - { path: ^/gestion/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/gestion/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/gestion/nuevaTapa, roles: ROLE_ADMIN }
+      - { path: ^/gestion, roles: ROLE_CLIENTE }
+      - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+    firewalls:
+        gestion:
+            pattern: ^/
+            anonymous: ~
+            provider: my_db_provider
+            logout:
+                path:   /gestion/logout
+                target: /
+            form_login:
+                login_path: /gestion/login
+                check_path: /gestion/login
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+            # activate different ways to authenticate
+
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            #http_basic: ~
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            #form_login: ~
